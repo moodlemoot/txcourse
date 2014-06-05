@@ -4,24 +4,22 @@
 	require_login();
 	
 	$context = context_system::instance();
-    $PAGE->set_context($context);	
-	$PAGE->set_url('/local/taxonomy/index.php');
+    	$PAGE->set_context($context);	
+	$PAGE->set_url('/local/txcourse/index.php');
 	
 	echo $OUTPUT->header();
-	echo $OUTPUT->heading('Vocabulary');
+	echo $OUTPUT->heading('Term Data');
 		 
 	$table = new html_table();
 
 	$table->head = array();
-	$table->head[] = 'ID';
-	$table->head[] = 'NAME';
-	$table->head[] = 'DESCRIPTION';
-	$table->head[] = 'WEIGHT';
-	$table->head[] = 'ACTIONS';
+	$table->head[] = 'TID';
+	$table->head[] = 'COURSE';
+	$table->head[] = 'COMPONENT';
 
-	$table->size = array('5%', '40%','40%', '5%', '10%');
+	$table->size = array('5%', '40%','40%');
 
-	$records = taxonomy_vocabulary_list();
+	$records = taxonomy_termdata_list();
 	foreach ($records as $key => $record)	{
 		$id = $record->id;
 		$actions = array();
