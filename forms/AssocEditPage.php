@@ -30,7 +30,7 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 
 $tid = optional_param('tid', 0, PARAM_INT); // Term id.
-$instanceid = optional_param('id', 0, PARAM_INT); // Instance id.
+$instanceid = optional_param('instanceid', 0, PARAM_INT); // Instance id.
 $componenttype= optional_param('componenttype', null , PARAM_TEXT); // Instance id.
 
 $PAGE->set_url('/local/taxonomy/forms/AssocEditPage.php', array('tid' => $tid, 'instanceid' => $instanceid, 'componenttype' => $componenttype));
@@ -71,8 +71,19 @@ $tab_id=array();
             }
         }
         var_dump($tab_id);
+        
+        
    echo "TODO : faire les insert or update avec les données ci dessus";
-
+   foreach ($tab_id as $value) {
+       echo " on fait le add sur $componenttype: $instanceid => $value<br>";
+       // il faut contruire un $data
+       $term_data = new stdClass;
+       $term_data->term_id = $value;
+       $term_data->instance_id = $instanceid;
+       $term_data->component = $componenttype;
+       $retour = taxonomy_term_data_add($term_data);
+       var_dump($retour);
+   }
     //$url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
   //  redirect($url);
 
