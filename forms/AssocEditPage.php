@@ -70,20 +70,24 @@ $tab_id=array();
                // echo " NOT found :$key /$value<br>";
             }
         }
-        var_dump($tab_id);
+      //  var_dump($tab_id);
         
         
-   echo "TODO : faire les insert or update avec les données ci dessus";
+   echo "<br>TODO : faire les insert or update avec les données ci dessus<br>";
    foreach ($tab_id as $value) {
        echo " on fait le add sur $componenttype: $instanceid => $value<br>";
        // il faut contruire un $data
        $term_data = new stdClass;
        $term_data->term_id = $value;
        $term_data->instance_id = $instanceid;
+       
        $term_data->component = $componenttype;
-       $retour = taxonomy_term_data_add($term_data);
-       var_dump($retour);
+       var_dump($term_data);
+     //  la focntion bug => Erreur d'écriture vers la base de données 
+     //  $retour = taxonomy_term_data_add($term_data);
+      // var_dump($retour);
    }
+    die('to be continued...');
     //$url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
   //  redirect($url);
 
@@ -95,7 +99,7 @@ $tab_id=array();
     echo $OUTPUT->header();
 
     if ( empty($term->id) ) {
-        echo $OUTPUT->heading('Créer une nouvelle assoc');
+        echo $OUTPUT->heading('Créer une nouvelle association de terme pour votrre cours');
     } else {
         echo $OUTPUT->heading('Modifier l association ' . $term->name);
     }
