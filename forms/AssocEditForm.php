@@ -43,8 +43,8 @@ class AssocEditForm extends moodleform {
         $mform = $this->_form; // Don't forget the underscore!
 
         $tid = $this->_customdata['tid']; // this contains the data of this form
-        $instanceid = $this->_customdata['instanceid']; // this contains the data of this form
-        $componenttype = $this->_customdata['componenttype']; // this contains the data of this form
+        $instanceid = $this->_customdata['id']; // this contains the data of this form
+        $componenttype = 'course'; // this contains the data of this form
         $data = taxonomy_vocabulary_list();
         //var_dump($data);
 
@@ -107,7 +107,7 @@ class AssocEditForm extends moodleform {
 
        // var_dump($data);
         var_dump($tab_id);
-        die('stop');
+        
         if (empty($tab_id)){
             $errors['shortname'] = 'please select at least one vocabulary';
             $errors[''] = 'please select at least one vocabulary';

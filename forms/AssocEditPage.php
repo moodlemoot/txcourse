@@ -24,7 +24,7 @@
  */
 
 require_once('../../../config.php');
-require_once('../lib.php');
+require_once('../../taxonomy/lib.php');
 
 $context = context_system::instance();
 $PAGE->set_context($context);
