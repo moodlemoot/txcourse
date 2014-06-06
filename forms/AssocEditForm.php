@@ -122,7 +122,7 @@ class AssocEditForm extends moodleform {
             $componenttype=$data['componenttype'];
         }
         
-//        var_dump($data);
+       var_dump($data);
 //        var_dump($tab_id);
 //        die('trop');
         if (empty($tab_id)){
