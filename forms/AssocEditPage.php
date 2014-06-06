@@ -30,7 +30,7 @@ $context = context_system::instance();
 $PAGE->set_context($context);
 
 $tid = optional_param('tid', 0, PARAM_INT); // Term id.
-$instanceid = optional_param('instanceid', 0, PARAM_INT); // Instance id.
+$instanceid = optional_param('id', 0, PARAM_INT); // Instance id.
 $componenttype= optional_param('componenttype', null , PARAM_TEXT); // Instance id.
 
 $PAGE->set_url('/local/taxonomy/forms/AssocEditPage.php', array('tid' => $tid, 'instanceid' => $instanceid, 'componenttype' => $componenttype));
@@ -51,17 +51,30 @@ if ($form->is_cancelled() ) {
     redirect($url);
 
 } else if ($data = $form->get_data()) {
+    // on a des data on va traiter les données
+echo "instanceid : $instanceid<br>";
+echo "componenttype: $componenttype";
+//var_dump($data);
+$tab_id=array();
+        foreach ($data as $key => $value) {
+            $pos = strstr($key, "voc_id");
+            if ($pos) {
+               // echo "found :$key /$value<=> $pos<br>";
+               foreach ($value as $key2 => $value2) {
+                 if ($value2 > 0) {
+                    $tab_id[] = $value2;   
+               }
+               
+                }
+            } else {
+               // echo " NOT found :$key /$value<br>";
+            }
+        }
+        var_dump($tab_id);
+   echo "TODO : faire les insert or update avec les données ci dessus";
 
-    if ( empty($term->id) ) {
-        // create
-      //  $term = taxonomy_term_create($data);
-    } else {
-        // edit
-       // $term = taxonomy_term_update($data);
-    }
-
-    $url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
-    redirect($url);
+    //$url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
+  //  redirect($url);
 
 } else {
     $site = get_site();

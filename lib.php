@@ -14,7 +14,7 @@ function local_txcourse_extends_settings_navigation($settings, $context) {
 
             $url = new moodle_url(
                 '/local/txcourse/forms/AssocEditPage.php',
-                array('id'=> $context->instanceid)
+                array('instaceid'=> $context->instanceid)
             );
             $root = $settings->find('courseadmin', navigation_node::TYPE_COURSE);
             $root->add('Taxonomy', $url);

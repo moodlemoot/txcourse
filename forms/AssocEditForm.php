@@ -43,7 +43,7 @@ class AssocEditForm extends moodleform {
         $mform = $this->_form; // Don't forget the underscore!
 
         $tid = $this->_customdata['tid']; // this contains the data of this form
-        $instanceid = $this->_customdata['id']; // this contains the data of this form
+        $instanceid = $this->_customdata['instanceid']; // this contains the data of this form
         $componenttype = 'course'; // this contains the data of this form
         $data = taxonomy_vocabulary_list();
         //var_dump($data);
@@ -77,7 +77,7 @@ class AssocEditForm extends moodleform {
         $mform->setType('instanceid', PARAM_INT);
 
         $mform->addElement('hidden', 'componenttype', $componenttype);
-        $mform->setType('componenttype', PARAM_INT);
+        $mform->setType('componenttype', PARAM_TEXT);
 
         // Finally set the current form data
         //$this->set_data($id);
@@ -103,11 +103,28 @@ class AssocEditForm extends moodleform {
                // echo " NOT found :$key /$value<br>";
             }
         }
-
-
-       // var_dump($data);
-        var_dump($tab_id);
         
+        if (empty($data['instanceid'])){
+            $errors['shortname'] = 'please select at least one vocabulary';
+            $errors[''] = 'il manque l\'instance id';
+            // todo repositionner l'erreur au bon endroit dans le formulaire
+        }
+        else {
+            $instanceid=$data['instanceid'];
+        }
+        
+                
+        if (empty($data['componenttype'])){
+            $errors['shortname'] = 'please select at least one vocabulary';
+            $errors[''] = 'il manque le component type';
+            // todo repositionner l'erreur au bon endroit dans le formulaire
+        }       else {
+            $componenttype=$data['componenttype'];
+        }
+        
+//        var_dump($data);
+//        var_dump($tab_id);
+//        die('trop');
         if (empty($tab_id)){
             $errors['shortname'] = 'please select at least one vocabulary';
             $errors[''] = 'please select at least one vocabulary';
