@@ -73,10 +73,8 @@ if ($form->is_cancelled() ) {
        $term_data->term_id = $value;
        $term_data->instance_id = $instanceid;
        $term_data->component = $componenttype;
-       var_dump($term_data);
-     //  la focntion bug => Erreur d'écriture vers la base de données 
-     //  $retour = taxonomy_term_data_add($term_data);
-      // var_dump($retour);
+
+       $retour = taxonomy_term_data_add($term_data);
    }
     die('to be continued...');
     //$url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
