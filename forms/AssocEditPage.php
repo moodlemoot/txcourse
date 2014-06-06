@@ -51,36 +51,27 @@ if ($form->is_cancelled() ) {
     redirect($url);
 
 } else if ($data = $form->get_data()) {
-    // on a des data on va traiter les données
-echo "instanceid : $instanceid<br>";
-echo "componenttype: $componenttype";
-//var_dump($data);
-$tab_id=array();
-        foreach ($data as $key => $value) {
-            $pos = strstr($key, "voc_id");
-            if ($pos) {
-               // echo "found :$key /$value<=> $pos<br>";
-               foreach ($value as $key2 => $value2) {
-                 if ($value2 > 0) {
-                    $tab_id[] = $value2;   
-               }
-               
-                }
-            } else {
-               // echo " NOT found :$key /$value<br>";
+
+    $tab_id = array();
+    foreach ($data as $key => $value) {
+        $pos = strstr($key, "voc_id");
+        if ($pos) {
+            // echo "found :$key /$value<=> $pos<br>";
+            foreach ($value as $key2 => $value2) {
+                if ($value2 > 0) {
+                $tab_id[] = $value2;
             }
+            }
+        } else {
+            // echo " NOT found :$key /$value<br>";
         }
-      //  var_dump($tab_id);
-        
-        
-   echo "<br>TODO : faire les insert or update avec les données ci dessus<br>";
+    }
+
    foreach ($tab_id as $value) {
-       echo " on fait le add sur $componenttype: $instanceid => $value<br>";
        // il faut contruire un $data
        $term_data = new stdClass;
        $term_data->term_id = $value;
        $term_data->instance_id = $instanceid;
-       
        $term_data->component = $componenttype;
        var_dump($term_data);
      //  la focntion bug => Erreur d'écriture vers la base de données 
