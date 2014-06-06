@@ -99,7 +99,7 @@ $tab_id=array();
     echo $OUTPUT->header();
 
     if ( empty($term->id) ) {
-        echo $OUTPUT->heading('Créer une nouvelle association de terme pour votrre cours');
+        echo $OUTPUT->heading('Créer une nouvelle association de terme pour votre cours');
     } else {
         echo $OUTPUT->heading('Modifier l association ' . $term->name);
     }
