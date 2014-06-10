@@ -75,8 +75,9 @@ if ($form->is_cancelled() ) {
        $term_data->component = $componenttype;
 
        $retour = taxonomy_term_data_add($term_data);
+       echo "ajout ok<br>";
    }
-    die('to be continued...');
+
     //$url = new moodle_url("$CFG->wwwroot/local/taxonomy/index.php");
   //  redirect($url);
 
@@ -87,7 +88,16 @@ if ($form->is_cancelled() ) {
 
     echo $OUTPUT->header();
 
-    if ( empty($term->id) ) {
+    if (empty($term->id)) {
+
+        echo " liste des termes déjà associés à votre cours #$instanceid";
+        $retour = taxonomy_term_data_load($instanceid);
+        $tab_id_affec=  array();
+        foreach ($retour as $key => $value) {
+            echo " $value->name /";
+            $tab_id_affec[]=$value->term_id;
+        }
+        
         echo $OUTPUT->heading('Créer une nouvelle association de terme pour votre cours');
     } else {
         echo $OUTPUT->heading('Modifier l association ' . $term->name);

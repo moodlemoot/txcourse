@@ -62,7 +62,9 @@ class AssocEditForm extends moodleform {
             //   var_dump($terms);
            $myselect =  $mform->addElement('select', 'voc_id_' . $vocabulary->id, $vocabulary->name, $terms);
            $myselect->setMultiple(true);
+           // todo : ici on doit trouver comment mettre des 'selected' sur les élements qui exisntent dans $tab_id_affec
             $mform->setType('voc_id_' . $vocabulary->id, PARAM_INT);
+            
             // $mform->addRule('voc'.$vocabulary->id, get_string('error'), 'required');
             //echo "ajout $vocabulary->id : $vocabulary->name";
         }
